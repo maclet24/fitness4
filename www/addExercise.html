@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/addExercise.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/db.js"></script>
+    <script src="js/app.js"></script>
+  </head>
+  <body ng-app="starter">
+    <ion-pane>
+      <ion-header-bar align-title='center' id='title' class="bar-stable bar-dark"> 
+        <h1 class="title"><a id = "backButton" class="button button-small button-dark" href="setupRoutine.html">Back</a> Add a new exercise!</h1>
+      </ion-header-bar>
+      
+      <ion-content>
+        <div id="qrpopup" > //The hidden div tag for implementing the popup
+            <hr/>
+            <label id = "editNameBoxLabel" for="editNameBox">Exercise Name</label>
+            <input type="text" id="editNameBox"><br>
+            <label id = "editRepsBoxLabel" for="editRepsBox">Repetitions</label>
+            <input type="text" id="editRepsBox"><br>
+            <label id = "editSetsBoxLabel" for="editSetsBox">Sets</label>
+            <input type="text" id="editSetsBox"><br>
+            <label id = "editTimeBoxLabel" for="editTimeBox">Timer</label>
+            <input type="text" id="editTimerBox"><br>
+            <label id = "editIncrementBoxLabel" for="editIncrementBox">Increment rate</label>
+            <input type="text" id="editIncrementBox"><br>
+            <button id ="editButton" onclick="goEdit()">Edit</button>
+            &nbsp;
+            &nbsp;
+            <button id = "deleteButton" onclick="goDelete()"> Delete</button>
+            &nbsp;
+            &nbsp;
+            <button id = "exitButton" onclick="document.getElementById('qrpopup').style.display='none';">Exit</button>
+        </div>
+        <div>
+          Exercise name<input type="text" placeholder = 'Enter exercise name' id='exercise_name'>
+          Repetions<input type="text" placeholder = 'Enter number of reps' id="reps_number">
+          Sets <input type="text" placeholder = 'Enter number of sets' id= 'sets_number'>
+          Timer <input type="text" placeholder = 'Enter timer' id='time'>
+          Increment rate<input type="text" placeholder = 'Increment by...' id ='increment_rate'>
+        </div>
+        <div style="text-align: center">
+          <button onclick="goInsert()">Add exercise</button><hr/>
+        </div>
+        <div id="tblDiv">
+        </div>
+      </ion-content>
+    </ion-pane>
+  </body>
+</html>

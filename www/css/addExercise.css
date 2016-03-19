@@ -1,0 +1,53 @@
+#backButton{
+    position: absolute;
+    left: 5px;
+}
+
+#qrpopup {
+    position:relative;
+    z-index:9999;
+    background-color:rgba(0, 0, 0,0.9);
+    width:100%;
+    height:100%;
+    display:none;
+}
+
+#editNameBoxLabel{
+    color: white;
+}
+
+#editRepsBoxLabel{
+    color : white;
+}
+
+#editSetsBoxLabel{
+    color : white;
+}
+
+#editTimeBoxLabel{
+    color : white;
+}
+
+#editIncrementBoxLabel{
+    color : white;
+}
+
+#idPad{
+    padding-right: 10px;
+}
+
+#namePad{
+    padding-right: 10px;
+}
+
+#repsPad{
+    padding-right: 10px;
+}
+
+#setsPad{
+    padding-right: 10px;
+}
+
+#timePad{
+    padding-right: 10px;
+}
