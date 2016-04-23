@@ -7,6 +7,13 @@
         //
         function populateDB(tx) {
             tx.executeSql('CREATE TABLE IF NOT EXISTS EXERCISE (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, reps INTEGER, sets INTEGER, timer INTEGER,increment INTEGER)');
+            tx.executeSql('CREATE TABLE IF NOT EXISTS MONDAY (exercise TEXT NOT NULL)');
+            tx.executeSql('CREATE TABLE IF NOT EXISTS TUESDAY (exercise TEXT NOT NULL)');
+            tx.executeSql('CREATE TABLE IF NOT EXISTS WEDNESDAY (exercise TEXT NOT NULL)');
+            tx.executeSql('CREATE TABLE IF NOT EXISTS THURSDAY (exercise TEXT NOT NULL)');
+            tx.executeSql('CREATE TABLE IF NOT EXISTS FRIDAY (exercise TEXT NOT NULL)');
+            tx.executeSql('CREATE TABLE IF NOT EXISTS SATURDAY (exercise TEXT NOT NULL)');
+            tx.executeSql('CREATE TABLE IF NOT EXISTS SUNDAY (exercise TEXT NOT NULL)');
         }
 
         // Query the database
@@ -19,6 +26,34 @@
             tx.executeSql("SELECT * FROM EXERCISE where name like ('%"+ document.getElementById("txtName").value + "%')",
                     [], querySuccess, errorCB);
         }
+        
+        function setupQuery() {
+          
+        }
+        
+        // this is the code to handle the setting up of the selected day
+        function queryDayDB(tx) {
+            tx.executeSql("SELECT * FROM " + document.getElementById("daySelect").value, [] , updateDayTable ,errorCB);
+        }
+        
+        function queryDay() {
+            var db = sqlitePlugin.openDatabase("Database", "1.0", "Cordova Demo", 200000);
+            db.transaction(queryDayDB, errorCB);
+        }      
+        
+        // Changes the daily table upon selecting a day
+        function updateDayTable(tx, results) {
+          var tableText ='<table id="t01"><tr><th id="whichDay">' + document.getElementById("daySelect").value + '</th><th> Exercise</th></tr>';
+          var len = results.rows.length;
+          for (var i=0; i< len; i++) {
+            tableText += '<tr><td>' + results.rows.items(i).exercise + '</td></tr>';
+          }
+          tableText += "</table>";
+          document.getElementById("dayTbl").innerHTML = tableText;
+        }
+        
+        
+        
         // Query the success callback
         //
         function querySuccess(tx, results) {

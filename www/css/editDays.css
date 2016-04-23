@@ -1,0 +1,47 @@
+#backButton{
+    position: absolute;
+    left: 5px;
+}
+
+#deletepopup {
+    position:relative;
+    z-index:9999;
+    background-color:rgba(0, 0, 0,0.9);
+    width:100%;
+    height:100%;
+    display:none;
+}
+
+#addpopup {
+    position:relative;
+    z-index:9999;
+    background-color:rgba(0, 0, 0,0.9);
+    width:100%;
+    height:100%;
+    display:none;
+}
+
+#whichDayLabel{
+    color: white;
+}
+
+
+#idPad{
+    padding-right: 10px;
+}
+
+#namePad{
+    padding-right: 10px;
+}
+
+#repsPad{
+    padding-right: 10px;
+}
+
+#setsPad{
+    padding-right: 10px;
+}
+
+#timePad{
+    padding-right: 10px;
+}

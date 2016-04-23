@@ -6,7 +6,7 @@
     <title></title>
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
-    <link href="css/addExercise.css" rel="stylesheet">
+    <link href="css/editDays.css" rel="stylesheet">
 
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
@@ -19,11 +19,6 @@
     <script src="cordova.js"></script>
 
     <!-- your app's js -->
-    <script>
-    function run() {
-        document.getElementById("srt").value = document.getElementById("Ultra").value;
-    }
-    </script>
     <script src="js/db.js"></script>
     <script src="js/app.js"></script>
   </head>
@@ -36,7 +31,28 @@
       </ion-header-bar>
       
       <ion-content>
-        <select id="Ultra" onchange="run()">  <!--Call run() function-->
+        
+        <div id="addpopup" > //The hidden div tag for implementing the popup
+            <hr/>
+            <label id = "whichDayLabel" for="whichDay">Day selected</label>
+            <input type="text" id="whichDay"><br>
+            <button id ="editButton" onclick="goEdit()">Add</button>
+            &nbsp;
+            &nbsp;
+            <button id = "exitButton" onclick="document.getElementById('qrpopup').style.display='none';">Exit</button>
+        </div>
+        
+        <div id="deletepopup" > //The hidden div tag for implementing the popup
+            <hr/>
+            <label id = "whichDayLabel" for="whichDay">Day selected</label>
+            <input type="text" id="whichDay"><br>
+            <button id = "deleteButton" onclick="goDelete()"> Delete</button>
+            &nbsp;
+            &nbsp;
+            <button id = "exitButton" onclick="document.getElementById('qrpopup').style.display='none';">Exit</button>
+        </div>
+        
+        <select id="daySelect" onchange="queryDay()">  <!--Call run() function-->
           <option value="0">Select</option>
           <option value="Monday">Monday</option>
           <option value="Tuesday">Tuesday</option>
@@ -44,16 +60,14 @@
           <option value="Thursday">Thursday</option>
           <option value="Friday">Friday</option>
           <option value="saturday">Saturday</option>
-          <option value="Sunday2342">Sunday</option>
-          <option value="boom"> boom</option>
-          <option value="set">set</option>
-          <option value="buying">buying</option>
-          <option value="trying">trying</option>
-`       </select>
+          <option value="Sunday">Sunday</option>
+        </select>
         <br><br><hr/>
         
-        TextBox1<br>
-        <input type="text" id="srt" placeholder="get value on option select"><br>
+        <div id="tblDiv">
+        </div>
+        <hr/>
+        
       </ion-content>
       
     </ion-pane>
