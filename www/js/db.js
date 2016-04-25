@@ -1,19 +1,22 @@
 // Wait for Cordova to load
         //
         document.addEventListener("deviceready", onDeviceReady, false);
-
         var currentRow;
+        var day;
+        var update_day_id;
+        var added_value;
+
         // Populate the database
         //
         function populateDB(tx) {
             tx.executeSql('CREATE TABLE IF NOT EXISTS EXERCISE (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, reps INTEGER, sets INTEGER, timer INTEGER,increment INTEGER)');
-            tx.executeSql('CREATE TABLE IF NOT EXISTS MONDAY (exercise TEXT NOT NULL)');
-            tx.executeSql('CREATE TABLE IF NOT EXISTS TUESDAY (exercise TEXT NOT NULL)');
-            tx.executeSql('CREATE TABLE IF NOT EXISTS WEDNESDAY (exercise TEXT NOT NULL)');
-            tx.executeSql('CREATE TABLE IF NOT EXISTS THURSDAY (exercise TEXT NOT NULL)');
-            tx.executeSql('CREATE TABLE IF NOT EXISTS FRIDAY (exercise TEXT NOT NULL)');
-            tx.executeSql('CREATE TABLE IF NOT EXISTS SATURDAY (exercise TEXT NOT NULL)');
-            tx.executeSql('CREATE TABLE IF NOT EXISTS SUNDAY (exercise TEXT NOT NULL)');
+            tx.executeSql('CREATE TABLE IF NOT EXISTS MONDAY (id INTEGER PRIMARY KEY AUTOINCREMENT, exercise TEXT NOT NULL, added INTEGER)');
+            tx.executeSql('CREATE TABLE IF NOT EXISTS TUESDAY (id INTEGER PRIMARY KEY AUTOINCREMENT,exercise TEXT NOT NULL, added INTEGER)');
+            tx.executeSql('CREATE TABLE IF NOT EXISTS WEDNESDAY (id INTEGER PRIMARY KEY AUTOINCREMENT,exercise TEXT NOT NULL, added INTEGER)');
+            tx.executeSql('CREATE TABLE IF NOT EXISTS THURSDAY (id INTEGER PRIMARY KEY AUTOINCREMENT,exercise TEXT NOT NULL, added INTEGER)');
+            tx.executeSql('CREATE TABLE IF NOT EXISTS FRIDAY (id INTEGER PRIMARY KEY AUTOINCREMENT,exercise TEXT NOT NULL, added INTEGER)');
+            tx.executeSql('CREATE TABLE IF NOT EXISTS SATURDAY (id INTEGER PRIMARY KEY AUTOINCREMENT,exercise TEXT NOT NULL, added INTEGER)');
+            tx.executeSql('CREATE TABLE IF NOT EXISTS SUNDAY (id INTEGER PRIMARY KEY AUTOINCREMENT,exercise TEXT NOT NULL, added INTEGER)');
         }
 
         // Query the database
@@ -21,35 +24,28 @@
         function queryDB(tx) {
             tx.executeSql('SELECT * FROM EXERCISE', [], querySuccess, errorCB);
         }
+        
+        function queryDay(tx) {
+            if (day == 'Monday') {
+                tx.executeSql("SELECT * FROM MONDAY", [], queryDaySuccess, errorCB);
+            }else if (day == 'Tuesday') {
+                tx.executeSql("SELECT * FROM TUESDAY", [], queryDaySuccess, errorCB);
+            }else if (day == 'Wednesday') {
+                tx.executeSql("SELECT * FROM WEDNESDAY", [], queryDaySuccess, errorCB);
+            }else if (day == 'Thursday') {
+                tx.executeSql("SELECT * FROM THURSDAY", [], queryDaySuccess, errorCB);
+            }else if (day == 'Friday') {
+                tx.executeSql("SELECT * FROM FRIDAY", [], queryDaySuccess, errorCB);
+            }else if (day == 'Sunday'){
+                tx.executeSql("SELECT * FROM SUNDAY", [], queryDaySuccess, errorCB);
+            }else{
+                tx.executeSql("SELECT * FROM SATURDAY", [], queryDaySuccess, errorCB);
+            }
+        }
 
         function searchQueryDB(tx) {
             tx.executeSql("SELECT * FROM EXERCISE where name like ('%"+ document.getElementById("txtName").value + "%')",
                     [], querySuccess, errorCB);
-        }
-        
-        function setupQuery() {
-          
-        }
-        
-        // this is the code to handle the setting up of the selected day
-        function queryDayDB(tx) {
-            tx.executeSql("SELECT * FROM " + document.getElementById("daySelect").value, [] , updateDayTable ,errorCB);
-        }
-        
-        function queryDay() {
-            var db = sqlitePlugin.openDatabase("Database", "1.0", "Cordova Demo", 200000);
-            db.transaction(queryDayDB, errorCB);
-        }      
-        
-        // Changes the daily table upon selecting a day
-        function updateDayTable(tx, results) {
-          var tableText ='<table id="t01"><tr><th id="whichDay">' + document.getElementById("daySelect").value + '</th><th> Exercise</th></tr>';
-          var len = results.rows.length;
-          for (var i=0; i< len; i++) {
-            tableText += '<tr><td>' + results.rows.items(i).exercise + '</td></tr>';
-          }
-          tableText += "</table>";
-          document.getElementById("dayTbl").innerHTML = tableText;
         }
         
         
@@ -73,20 +69,65 @@
             tblText +="</table>";
             document.getElementById("tblDiv").innerHTML =tblText;
         }
-
+        function test(value) {
+            day = value;
+            successCBday();
+            //document.getElementById("dayDiv").innerHTML = value;
+        }
+        function queryDaySuccess(tx,results){
+            var tblText = '<table><tr><th>Name </th> <th> Added </th></tr>' + day;
+            var len = results.rows.length;
+            var is_added;
+            var test;
+            for (var i=0; i<len; i++){
+                test = results.rows.item(i).added;
+                if (test == 1) {
+                    is_added = 'checked';
+                }
+                else{
+                    is_added = '';
+                }
+                tblText += '<tr><td>' + results.rows.item(i).exercise + '</td><td><input type="checkbox" onClick="update_day(this)" value="' + results.rows.item(i).id + '" ' + is_added + '></tr>';
+            }
+            tblText +="</table>";
+            document.getElementById("dayDiv").innerHTML = tblText;
+        }
+        function update_day(element) {
+            var x = element.checked;
+            update_day_id = element.value;
+            if (x){
+                added_value = 1;
+            }else{
+                added_value = 0;
+            }
+            goEditDay();
+        }
         //Delete query
         function deleteRow(tx) {
-          tx.executeSql('DELETE FROM EXERCISE WHERE id = "' + currentRow + '"');
+            tx.executeSql('DELETE FROM EXERCISE WHERE id = "' + currentRow + '"');
+            tx.executeSql('DELETE FROM MONDAY WHERE id = "' + currentRow + '"');
+            tx.executeSql('DELETE FROM TUESDAY WHERE id = "' + currentRow + '"');
+            tx.executeSql('DELETE FROM WEDNESDAY WHERE id = "' + currentRow + '"');
+            tx.executeSql('DELETE FROM THURSDAY WHERE id = "' + currentRow + '"');
+            tx.executeSql('DELETE FROM FRIDAY WHERE id = "' + currentRow + '"');
+            tx.executeSql('DELETE FROM SATURDAY WHERE id = "' + currentRow + '"');
+            tx.executeSql('DELETE FROM SUNDAY WHERE id = "' + currentRow + '"');
         }
 
         // Transaction error callback
         //
         function errorCB(err) {
-            alert("Error processing SQL: "+err.code);
+            //alert("Error processing SQL: "+err.code);
         }
 
         // Transaction success callback
         //
+        
+        function successCBday() {
+            var db = sqlitePlugin.openDatabase("Database", "1.0", "Cordova Demo", 200000);
+            db.transaction(queryDay, errorCB);
+        }
+        
         function successCB() {
             var db = sqlitePlugin.openDatabase("Database", "1.0", "Cordova Demo", 200000);
             db.transaction(queryDB, errorCB);
@@ -101,18 +142,29 @@
 
         //Insert query
         //
-        function insertDB(tx) {
+        function insertExercise(tx) {
             tx.executeSql('INSERT INTO EXERCISE (name,reps,sets,timer,increment) VALUES ("' +document.getElementById("exercise_name").value
                     +'","'+document.getElementById("reps_number").value
                     +'","'+document.getElementById("sets_number").value
                     +'","'+document.getElementById("time").value
                     +'","'+document.getElementById("increment_rate").value
                     + '")');
+            tx.executeSql('INSERT INTO MONDAY (exercise,added) VALUES ("' + document.getElementById("exercise_name").value + '","0")');
+            tx.executeSql('INSERT INTO TUESDAY (exercise,added) VALUES ("' + document.getElementById("exercise_name").value + '","0")');
+            tx.executeSql('INSERT INTO WEDNESDAY (exercise,added) VALUES ("' + document.getElementById("exercise_name").value + '","0")');
+            tx.executeSql('INSERT INTO THURSDAY (exercise,added) VALUES ("' + document.getElementById("exercise_name").value + '","0")');
+            tx.executeSql('INSERT INTO FRIDAY (exercise,added) VALUES ("' + document.getElementById("exercise_name").value + '","0")');
+            tx.executeSql('INSERT INTO SATURDAY (exercise,added) VALUES ("' + document.getElementById("exercise_name").value + '","0")');
+            tx.executeSql('INSERT INTO SUNDAY (exercise,added) VALUES ("' + document.getElementById("exercise_name").value + '","0")');
+            document.getElementById("exercise_name").value = "";
+            document.getElementById("reps_number").value = "";
+            document.getElementById("sets_number").value = "";
+            document.getElementById("time").value = "";
+            document.getElementById("increment_rate").value = "";
         }
-
         function goInsert() {
             var db = sqlitePlugin.openDatabase("Database", "1.0", "Cordova Demo", 200000);
-            db.transaction(insertDB, errorCB, successCB);
+            db.transaction(insertExercise, errorCB, successCB);
         }
 
         function goSearch() {
@@ -145,9 +197,37 @@
                           '", timer="' + document.getElementById("editTimerBox").value +
                           '", increment="' + document.getElementById("editIncrementBox").value +
                           '" WHERE id =' + currentRow);
+            tx.executeSql('UPDATE MONDAY SET exercise ="' + document.getElementById("editNameBox").value + '" WHERE id =' + currentRow);
+            tx.executeSql('UPDATE TUESDAY SET exercise ="' + document.getElementById("editNameBox").value + '" WHERE id =' + currentRow);
+            tx.executeSql('UPDATE WEDNESDAY SET exercise ="' + document.getElementById("editNameBox").value + '" WHERE id =' + currentRow);
+            tx.executeSql('UPDATE THURSDAY SET exercise ="' + document.getElementById("editNameBox").value + '" WHERE id =' + currentRow);
+            tx.executeSql('UPDATE FRIDAY SET exercise ="' + document.getElementById("editNameBox").value + '" WHERE id =' + currentRow);
+            tx.executeSql('UPDATE SATURDAY SET exercise ="' + document.getElementById("editNameBox").value + '" WHERE id =' + currentRow);
+            tx.executeSql('UPDATE SUNDAY SET exercise ="' + document.getElementById("editNameBox").value + '" WHERE id =' + currentRow);
+        }
+        function editDayRow(tx){
+            if (day == 'Monday'){
+                tx.executeSql('UPDATE MONDAY SET added ="' + added_value + '" WHERE id =' + update_day_id);
+            }else if (day == 'Tuesday') {
+                tx.executeSql('UPDATE TUESDAY SET added ="' + added_value + '" WHERE id =' + update_day_id);
+            }else if (day == 'Wednesday') {
+                tx.executeSql('UPDATE WEDNESDAY SET added ="' + added_value + '" WHERE id =' + update_day_id);
+            }else if (day == 'Thursday') {
+                tx.executeSql('UPDATE THURSDAY SET added ="' + added_value + '" WHERE id =' + update_day_id);
+            }else if (day == 'Friday') {
+                tx.executeSql('UPDATE FRIDAY SET added ="' + added_value + '" WHERE id =' + update_day_id);
+            }else if (day == 'Sunday'){
+                tx.executeSql('UPDATE SUNDAY SET added ="' + added_value + '" WHERE id =' + update_day_id);
+            }else{
+                tx.executeSql('UPDATE SATURDAY SET added ="' + added_value + '" WHERE id =' + update_day_id);
+            }
         }
         function goEdit() {
             var db = sqlitePlugin.openDatabase("Database", "1.0", "Cordova Demo", 200000);
             db.transaction(editRow, errorCB, successCB);
             document.getElementById('qrpopup').style.display='none';
+        }
+        function goEditDay() {
+            var db = sqlitePlugin.openDatabase("Database", "1.0", "Cordova Demo", 200000);
+            db.transaction(editDayRow, errorCB);
         }

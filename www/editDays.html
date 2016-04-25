@@ -32,27 +32,7 @@
       
       <ion-content>
         
-        <div id="addpopup" > //The hidden div tag for implementing the popup
-            <hr/>
-            <label id = "whichDayLabel" for="whichDay">Day selected</label>
-            <input type="text" id="whichDay"><br>
-            <button id ="editButton" onclick="goEdit()">Add</button>
-            &nbsp;
-            &nbsp;
-            <button id = "exitButton" onclick="document.getElementById('qrpopup').style.display='none';">Exit</button>
-        </div>
-        
-        <div id="deletepopup" > //The hidden div tag for implementing the popup
-            <hr/>
-            <label id = "whichDayLabel" for="whichDay">Day selected</label>
-            <input type="text" id="whichDay"><br>
-            <button id = "deleteButton" onclick="goDelete()"> Delete</button>
-            &nbsp;
-            &nbsp;
-            <button id = "exitButton" onclick="document.getElementById('qrpopup').style.display='none';">Exit</button>
-        </div>
-        
-        <select id="daySelect" onchange="queryDay()">  <!--Call run() function-->
+        <select id="daySelect" onchange="test(value)">  <!--Call run() function-->
           <option value="0">Select</option>
           <option value="Monday">Monday</option>
           <option value="Tuesday">Tuesday</option>
@@ -63,8 +43,8 @@
           <option value="Sunday">Sunday</option>
         </select>
         <br><br><hr/>
-        
-        <div id="tblDiv">
+        <p id="testz"></p>
+        <div id="dayDiv">
         </div>
         <hr/>
         
