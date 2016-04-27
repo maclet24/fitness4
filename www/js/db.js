@@ -82,66 +82,108 @@
         
         function queryWorkoutSuccessMonday(tx, results){
             var count = document.getElementById("mondayCount").value -1;
-            var id = results.rows.item(count).id;
-            document.getElementById("monday").innerHTML = monday;
-            document.getElementById("mondayWorkout").innerHTML = results.rows.item(count).exercise;
-            document.getElementById("zGoal").innerHTML = results.rows.item(count).sets;
-            document.getElementById("repsGoal").innerHTML = results.rows.item(count).reps;
-            document.getElementById("timeGoal").innerHTML = results.rows.item(count).timer;
+            if (count < results.rows.length) {
+                var id = results.rows.item(count).id;
+                document.getElementById("monday").innerHTML = monday;
+                document.getElementById("mondayWorkout").innerHTML = results.rows.item(count).exercise;
+                document.getElementById("zGoal").innerHTML = results.rows.item(count).sets;
+                document.getElementById("repsGoal").innerHTML = results.rows.item(count).reps;
+                document.getElementById("timeGoal").innerHTML = results.rows.item(count).timer;
+            }
+            else{
+                window.location="index.html";
+            }
+            
         }
         function queryWorkoutSuccessTuesday(tx, results){
             var count = document.getElementById("tuesdayCount").value -1;
-            var id = results.rows.item(count).id;
-            document.getElementById("tuesday").innerHTML = tuesday;
-            document.getElementById("tuesdayWorkout").innerHTML = results.rows.item(count).exercise;
-            document.getElementById("zGoal").innerHTML = results.rows.item(count).sets;
-            document.getElementById("repsGoal").innerHTML = results.rows.item(count).reps;
-            document.getElementById("timeGoal").innerHTML = results.rows.item(count).timer;
+            if (count < results.rows.length) {
+                var id = results.rows.item(count).id;
+                document.getElementById("tuesday").innerHTML = tuesday;
+                document.getElementById("tuesdayWorkout").innerHTML = results.rows.item(count).exercise;
+                document.getElementById("zGoal").innerHTML = results.rows.item(count).sets;
+                document.getElementById("repsGoal").innerHTML = results.rows.item(count).reps;
+                document.getElementById("timeGoal").innerHTML = results.rows.item(count).timer;
+            }
+            else{
+                window.location="index.html";
+            }
+            
         }
         function queryWorkoutSuccessWednesday(tx, results){
             var count = document.getElementById("wednesdayCount").value -1;
-            var id = results.rows.item(count).id;
-            document.getElementById("wednesday").innerHTML = tuesday;
-            document.getElementById("wednesdayWorkout").innerHTML = results.rows.item(count).exercise;
-            document.getElementById("zGoal").innerHTML = results.rows.item(count).sets;
-            document.getElementById("repsGoal").innerHTML = results.rows.item(count).reps;
-            document.getElementById("timeGoal").innerHTML = results.rows.item(count).timer;
+            if (count < results.rows.length) {
+                 var id = results.rows.item(count).id;
+                document.getElementById("wednesday").innerHTML = tuesday;
+                document.getElementById("wednesdayWorkout").innerHTML = results.rows.item(count).exercise;
+                document.getElementById("zGoal").innerHTML = results.rows.item(count).sets;
+                document.getElementById("repsGoal").innerHTML = results.rows.item(count).reps;
+                document.getElementById("timeGoal").innerHTML = results.rows.item(count).timer;
+            }
+            else{
+                window.location="index.html";
+            }
+           
         }
         function queryWorkoutSuccessThursday(tx, results){
             var count = document.getElementById("thursdayCount").value -1;
-            var id = results.rows.item(count).id;
-            document.getElementById("thursday").innerHTML = tuesday;
-            document.getElementById("thursdayWorkout").innerHTML = results.rows.item(count).exercise;
-            document.getElementById("zGoal").innerHTML = results.rows.item(count).sets;
-            document.getElementById("repsGoal").innerHTML = results.rows.item(count).reps;
-            document.getElementById("timeGoal").innerHTML = results.rows.item(count).timer;
+            if (count < results.rows.length) {
+                var id = results.rows.item(count).id;
+                document.getElementById("thursday").innerHTML = tuesday;
+                document.getElementById("thursdayWorkout").innerHTML = results.rows.item(count).exercise;
+                document.getElementById("zGoal").innerHTML = results.rows.item(count).sets;
+                document.getElementById("repsGoal").innerHTML = results.rows.item(count).reps;
+                document.getElementById("timeGoal").innerHTML = results.rows.item(count).timer;
+            }
+            else{
+                window.location="index.html";
+            }
+            
         }
         function queryWorkoutSuccessFriday(tx, results){
             var count = document.getElementById("fridayCount").value -1;
-            var id = results.rows.item(count).id;
-            document.getElementById("friday").innerHTML = tuesday;
-            document.getElementById("fridayWorkout").innerHTML = results.rows.item(count).exercise;
-            document.getElementById("zGoal").innerHTML = results.rows.item(count).sets;
-            document.getElementById("repsGoal").innerHTML = results.rows.item(count).reps;
-            document.getElementById("timeGoal").innerHTML = results.rows.item(count).timer;
+            if (count < results.rows.length) {
+                var id = results.rows.item(count).id;
+                document.getElementById("friday").innerHTML = tuesday;
+                document.getElementById("fridayWorkout").innerHTML = results.rows.item(count).exercise;
+                document.getElementById("zGoal").innerHTML = results.rows.item(count).sets;
+                document.getElementById("repsGoal").innerHTML = results.rows.item(count).reps;
+                document.getElementById("timeGoal").innerHTML = results.rows.item(count).timer;
+            }
+            else{
+                window.location="index.html";
+            }
+            
         }
         function queryWorkoutSuccessSaturday(tx, results){
             var count = document.getElementById("saturdayCount").value -1;
-            var id = results.rows.item(count).id;
-            document.getElementById("saturday").innerHTML = tuesday;
-            document.getElementById("saturdayWorkout").innerHTML = results.rows.item(count).exercise;
-            document.getElementById("zGoal").innerHTML = results.rows.item(count).sets;
-            document.getElementById("repsGoal").innerHTML = results.rows.item(count).reps;
-            document.getElementById("timeGoal").innerHTML = results.rows.item(count).timer;
+            if (count < results.rows.length) {
+                var id = results.rows.item(count).id;
+                document.getElementById("saturday").innerHTML = tuesday;
+                document.getElementById("saturdayWorkout").innerHTML = results.rows.item(count).exercise;
+                document.getElementById("zGoal").innerHTML = results.rows.item(count).sets;
+                document.getElementById("repsGoal").innerHTML = results.rows.item(count).reps;
+                document.getElementById("timeGoal").innerHTML = results.rows.item(count).timer;
+            }
+            else{
+                window.location="index.html";
+            }
+            
         }
         function queryWorkoutSuccessSunday(tx, results){
             var count = document.getElementById("sundayCount").value -1;
-            var id = results.rows.item(count).id;
-            document.getElementById("sunday").innerHTML = tuesday;
-            document.getElementById("sundayWorkout").innerHTML = results.rows.item(count).exercise;
-            document.getElementById("zGoal").innerHTML = results.rows.item(count).sets;
-            document.getElementById("repsGoal").innerHTML = results.rows.item(count).reps;
-            document.getElementById("timeGoal").innerHTML = results.rows.item(count).timer;
+            if (count < results.rows.length) {
+                var id = results.rows.item(count).id;
+                document.getElementById("sunday").innerHTML = tuesday;
+                document.getElementById("sundayWorkout").innerHTML = results.rows.item(count).exercise;
+                document.getElementById("zGoal").innerHTML = results.rows.item(count).sets;
+                document.getElementById("repsGoal").innerHTML = results.rows.item(count).reps;
+                document.getElementById("timeGoal").innerHTML = results.rows.item(count).timer;
+            }
+            else{
+                window.location="index.html";
+            }
+            
         }
         function mondayNext() {
             document.getElementById("mondayCount").stepUp(1);
@@ -251,30 +293,44 @@
         }
         
         function loadWorkoutMonday() {
+            document.getElementById("start").style.visibility="hidden";
+            document.getElementById("next").disabled= false;
             var db = sqlitePlugin.openDatabase("Database", "1.0", "Cordova Demo", 200000);
             db.transaction(queryWorkoutMonday, errorCB);
         }
         function loadWorkoutTuesday() {
+            document.getElementById("start").style.visibility="hidden";
+            document.getElementById("next").disabled= false;
             var db = sqlitePlugin.openDatabase("Database", "1.0", "Cordova Demo", 200000);
             db.transaction(queryWorkoutTuesday, errorCB);
         }
         function loadWorkoutWednesday() {
+            document.getElementById("start").style.visibility="hidden";
+            document.getElementById("next").disabled= false;
             var db = sqlitePlugin.openDatabase("Database", "1.0", "Cordova Demo", 200000);
             db.transaction(queryWorkoutWednesday, errorCB);
         }
         function loadWorkoutThursday() {
+            document.getElementById("start").style.visibility="hidden";
+            document.getElementById("next").disabled= false;
             var db = sqlitePlugin.openDatabase("Database", "1.0", "Cordova Demo", 200000);
             db.transaction(queryWorkoutThursday, errorCB);
         }
         function loadWorkoutFriday() {
+            document.getElementById("start").style.visibility="hidden";
+            document.getElementById("next").disabled= false;
             var db = sqlitePlugin.openDatabase("Database", "1.0", "Cordova Demo", 200000);
             db.transaction(queryWorkoutFriday, errorCB);
         }
         function loadWorkoutSaturday() {
+            document.getElementById("start").style.visibility="hidden";
+            document.getElementById("next").disabled= false;
             var db = sqlitePlugin.openDatabase("Database", "1.0", "Cordova Demo", 200000);
             db.transaction(queryWorkoutSaturday, errorCB);
         }
         function loadWorkoutSunday() {
+            document.getElementById("start").style.visibility="hidden";
+            document.getElementById("next").disabled= false;
             var db = sqlitePlugin.openDatabase("Database", "1.0", "Cordova Demo", 200000);
             db.transaction(queryWorkoutSunday, errorCB);
         }
@@ -369,19 +425,47 @@
         }
 
         function editRow(tx) {
-            tx.executeSql('UPDATE EXERCISE SET name ="' + document.getElementById("editNameBox").value
-                          +'", reps="' + document.getElementById("editRepsBox").value +
+            tx.executeSql('UPDATE EXERCISE SET name ="' + document.getElementById("editNameBox").value +
+                          '", reps="' + document.getElementById("editRepsBox").value +
                           '", sets="' + document.getElementById("editSetsBox").value +
                           '", timer="' + document.getElementById("editTimerBox").value +
                           '", increment="' + document.getElementById("editIncrementBox").value +
                           '" WHERE id =' + currentRow);
-            tx.executeSql('UPDATE MONDAY SET exercise ="' + document.getElementById("editNameBox").value + '" WHERE id =' + currentRow);
-            tx.executeSql('UPDATE TUESDAY SET exercise ="' + document.getElementById("editNameBox").value + '" WHERE id =' + currentRow);
-            tx.executeSql('UPDATE WEDNESDAY SET exercise ="' + document.getElementById("editNameBox").value + '" WHERE id =' + currentRow);
-            tx.executeSql('UPDATE THURSDAY SET exercise ="' + document.getElementById("editNameBox").value + '" WHERE id =' + currentRow);
-            tx.executeSql('UPDATE FRIDAY SET exercise ="' + document.getElementById("editNameBox").value + '" WHERE id =' + currentRow);
-            tx.executeSql('UPDATE SATURDAY SET exercise ="' + document.getElementById("editNameBox").value + '" WHERE id =' + currentRow);
-            tx.executeSql('UPDATE SUNDAY SET exercise ="' + document.getElementById("editNameBox").value + '" WHERE id =' + currentRow);
+            tx.executeSql('UPDATE MONDAY SET exercise ="' + document.getElementById("editNameBox").value +
+                          '", sets="' + document.getElementById("editSetsBox").value +
+                          '", reps="' + document.getElementById("editRepsBox").value +
+                          '", timer="' + document.getElementById("editTimerBox").value +
+                          '" WHERE id =' + currentRow);
+            tx.executeSql('UPDATE TUESDAY SET exercise ="' + document.getElementById("editNameBox").value +
+                          '", sets="' + document.getElementById("editSetsBox").value +
+                          '", reps="' + document.getElementById("editRepsBox").value +
+                          '", timer="' + document.getElementById("editTimerBox").value +
+                          '" WHERE id =' + currentRow);
+            tx.executeSql('UPDATE WEDNESDAY SET exercise ="' + document.getElementById("editNameBox").value + 
+                          '", sets="' + document.getElementById("editSetsBox").value +
+                          '", reps="' + document.getElementById("editRepsBox").value +
+                          '", timer="' + document.getElementById("editTimerBox").value +
+                          '" WHERE id =' + currentRow);
+            tx.executeSql('UPDATE THURSDAY SET exercise ="' + document.getElementById("editNameBox").value +
+                          '", sets="' + document.getElementById("editSetsBox").value +
+                          '", reps="' + document.getElementById("editRepsBox").value +
+                          '", timer="' + document.getElementById("editTimerBox").value +
+                          '" WHERE id =' + currentRow);
+            tx.executeSql('UPDATE FRIDAY SET exercise ="' + document.getElementById("editNameBox").value +
+                        '", sets="' + document.getElementById("editSetsBox").value +
+                          '", reps="' + document.getElementById("editRepsBox").value +
+                          '", timer="' + document.getElementById("editTimerBox").value +
+                          '" WHERE id =' + currentRow);
+            tx.executeSql('UPDATE SATURDAY SET exercise ="' + document.getElementById("editNameBox").value +
+                          '", sets="' + document.getElementById("editSetsBox").value +
+                          '", reps="' + document.getElementById("editRepsBox").value +
+                          '", timer="' + document.getElementById("editTimerBox").value +
+                          '" WHERE id =' + currentRow);
+            tx.executeSql('UPDATE SUNDAY SET exercise ="' + document.getElementById("editNameBox").value +
+                          '", sets="' + document.getElementById("editSetsBox").value +
+                          '", reps="' + document.getElementById("editRepsBox").value +
+                          '", timer="' + document.getElementById("editTimerBox").value +
+                          '" WHERE id =' + currentRow);
         }
         function editDayRow(tx){
             if (day == 'Monday'){

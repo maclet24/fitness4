@@ -6,7 +6,7 @@
     <title></title>
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
-    <link href="css/style.css" rel="workoutStyle">
+    <link href="css/style.css" rel="workoutStyle.css">
 
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
@@ -35,7 +35,7 @@
         <span id="mondayWorkout"></span>
         Exercise #: <input value='1' type="number" id="mondayCount">
         <div>Goals: <div> Sets:<span id="zGoal"></span>  Reps:<span id="repsGoal"></span>  Time:<span id="timeGoal"></span></div> </div>
-        <button onclick="loadWorkoutMonday()">start</button><button onclick="mondayNext()">Next</button>
+        <button id="start" onclick="loadWorkoutMonday()">start</button><button id="next" onclick="mondayNext()" disabled>Next</button>
         <div id="test"></div>
       </ion-content>
       

@@ -35,7 +35,7 @@
         <span id="fridayWorkout"></span>
         Exercise #: <input value='1' type="number" id="fridayCount">
         <div>Goals: <div> Sets:<span id="zGoal"></span>  Reps:<span id="repsGoal"></span>  Time:<span id="timeGoal"></span></div> </div>
-        <button onclick="loadWorkoutFriday()">start</button><button onclick="fridayNext()">Next</button>
+        <button id="start" onclick="loadWorkoutFriday()">start</button><button id="next" onclick="fridayNext()" disabled>Next</button>
         <div id="test"></div>
       </ion-content>
       
